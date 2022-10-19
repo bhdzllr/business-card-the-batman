@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>Website Title</title>
+
+		<meta name="description" content="Add page description here" />
+		<meta name="robots" content="index, follow" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');</script>
+
+		<style>
+			:root {
+				--color-background: #121212;
+				--color-tint: rgba(190, 13, 12, 1);
+				--color-link-lv: #dddddd;
+				--color-link-fha: #ffffff;
+				--color-headline: #dddddd;
+				--color-text: #ffffff;
+
+				--card-ratio: 1.54;
+				--card-long-edge-px: 770px;
+				--card-short-edge-px: calc(var(--card-long-edge-px) / var(--card-ratio));
+
+				--card-portrait-short-edge: 75vw;
+				--card-portrait-short-edge-min: 260px;
+				--card-portrait-short-edge-max: calc(min(var(--card-long-edge-px), 85vw) / var(--card-ratio));
+				--card-portrait-long-edge: calc(var(--card-portrait-short-edge) * var(--card-ratio));
+				--card-portrait-long-edge-min: calc(260px * var(--card-ratio));
+				--card-portrait-long-edge-max: min(var(--card-long-edge-px), 85vw);
+
+				--card-landscape-long-edge: 75vw;
+				--card-landscape-long-edge-min: 280px;
+				--card-landscape-long-edge-max: calc(min(var(--card-short-edge-px), 85vh) * var(--card-ratio));
+				--card-landscape-short-edge: calc(var(--card-landscape-long-edge) / var(--card-ratio));
+				--card-landscape-short-edge-min: calc(280px / var(--card-ratio));
+				--card-landscape-short-edge-max: min(var(--card-short-edge-px), 85vh);
+			}
+
+			*:focus {
+				outline: 2px solid var(--color-tint);
+				outline-offset: 2px;
+				z-index: 1;
+			}
+
+			*:focus:not(:focus-visible) {
+				outline: none;
+			}
+
+			*:focus-visible {
+				outline: 2px solid var(--color-tint);
+				outline-offset: 2px;
+				z-index: 1;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+
+				color: var(--color-text);
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				font-size: 1em;
+				line-height: 1.625;
+			}
+
+			html {
+				background: var(--color-background);
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+
+				background-color: var(--color-background);
+				background: linear-gradient(135deg, var(--color-tint) 0%, rgba(25, 25, 25, 1) 45%);
+			}
+
+			a,
+			a:link,
+			a:visited {
+				color: var(--color-link-lv);
+				text-decoration: underline;
+			}
+
+			a:focus,
+			a:hover,
+			a:active {
+				color: var(--color-link-fha);
+			}
+
+			main {
+				position: relative;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+
+				width: var(--card-portrait-short-edge);
+				min-width: var(--card-portrait-short-edge-min);
+				max-width: var(--card-portrait-short-edge-max);
+				height: var(--card-portrait-long-edge);
+				min-height: var(--card-portrait-long-edge-min);
+				max-height: var(--card-portrait-long-edge-max);
+				margin: 1.5rem auto;
+				padding: 1.5rem;
+				box-sizing: border-box;
+
+				background-color: var(--color-background);
+				background-image: url('background-card.jpg');
+				background-position: 70% top;
+				background-size: cover;
+				border-radius: 1.25rem;
+				box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
+			}
+
+			@media (orientation: landscape) and (min-width: 480px) and (min-height: 320px) {
+				main {
+					width: var(--card-landscape-long-edge);
+					min-width: var(--card-landscape-long-edge-min);
+					max-width: var(--card-landscape-long-edge-max);
+					height: var(--card-landscape-short-edge);
+					min-height: var(--card-landscape-short-edge-min);
+					max-height: var(--card-landscape-short-edge-max);
+
+					background-position: right top;
+				}
+			}
+
+			@media (min-height: 400px) and (min-width: 40rem) {
+				main {
+					padding: 3rem;
+				}
+			}
+
+			main::before {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+
+				content: '';
+				display: block;
+
+				background: rgba(0, 0, 0, 0.65);
+				background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0) 75%);
+				border-radius: 1.25rem;
+			}
+
+			main > * {
+				position: relative;
+			}
+
+			header h1 {
+				margin-top: 0;
+				margin-bottom: 1.5rem;
+
+				color: var(--color-headline);;
+				font-size: 1.75rem;
+				font-weight: bold;
+				line-height: 1.25;
+				letter-spacing: -2px;
+				text-shadow: 0 0 20px var(--color-tint);
+				text-transform: uppercase;
+			}
+
+			@media (min-height: 400px) and (min-width: 40rem) {
+				header h1 {
+					font-size: 2.5rem;
+				}
+			}
+
+			@media (min-height: 400px) and (min-width: 60rem) {
+				header h1 {
+					font-size: 3.5rem;
+				}
+			}
+
+			header ul {
+				display: flex;
+				flex-direction: column;
+				margin: 0;
+				padding: 0;
+
+				list-style: none;
+
+				color: var(--color-tint);
+				font-size: 0.75rem;
+				font-weight: bold;
+				text-transform: uppercase;
+				text-shadow: 0 0 20px var(--color-tint);
+			}
+
+			@media (orientation: landscape) and (min-width: 480px) and (min-height: 320px) {
+				header ul {
+					flex-direction: row;
+					flex-wrap: wrap;
+				}
+
+				header ul li {
+					display: inline-block;
+				}
+
+				header ul li::after {
+					content: '\2022';
+					margin: 0 0.5rem;
+				}
+
+				header ul li:last-child::after {
+					content: none;
+				}
+			}
+
+			@media (min-height: 400px) and (min-width: 40rem) {
+				header ul {
+					font-size: 0.85rem;
+				}
+			}
+
+			@media (min-height: 400px) and (min-width: 60rem) {
+				header ul {
+					font-size: 1rem;
+				}
+			}
+
+			nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				color: var(--color-text);
+			}
+
+			nav ul {
+				display: inline-flex;
+				margin: 0;
+				padding: 0;
+
+				list-style: none;
+			}
+
+			nav ul li {
+				margin: 0 0.75rem;
+			}
+
+			nav ul li:first-child {
+				margin-left: 0;
+			}
+
+			nav ul li a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 2rem;
+				height: 2rem;
+				border: 2px solid currentColor;
+				border-radius: 50%;
+			}
+
+			@media (orientation: landscape) and (min-width: 480px) and (min-height: 320px) {
+				nav ul li a {
+					width: 3rem;
+					height: 3rem;
+				}
+			}
+
+			.credits {
+				opacity: 0.35;
+
+				font-size: 0.85rem;
+			}
+
+			.screen-reader-text {
+				position: absolute;
+
+				width: 1px;
+				height: 1px;
+				margin: -1px;
+				padding: 0;
+				overflow: hidden;
+
+				border: 0;
+				clip-path: inset(50%);
+
+				white-space: nowrap;
+			}
+
+			.screen-reader-text--focusable:active,
+			.screen-reader-text--focusable:focus {
+				position: static;
+
+				width: auto;
+				height: auto;
+				margin: 0;
+				overflow: visible;
+
+				clip-path: none;
+
+				white-space: inherit;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<header>
+				<h1>The Batman</h1>
+				<ul>
+					<li>Nocturnal Animal</li>
+					<li>Shadows</li>
+					<lI>Vengeance</lI>
+				</ul>
+			</header>
+
+			<nav>
+				<ul>
+					<li>
+						<a href="#" title="Twitter">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"></path>
+							</svg>
+							<span class="screen-reader-text">Twitter</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="GitHub">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+							</svg>
+							<span class="screen-reader-text">GitHub</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="Mail">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<rect x="3" y="5" width="18" height="14" rx="2"></rect>
+								<polyline points="3 7 12 13 21 7"></polyline>
+							</svg>
+							<span class="screen-reader-text">Mail</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</main>
+
+		<div class="credits">
+			Image: <a href="https://unsplash.com/photos/PlWgUiT0StQ">Jack Barton</a> <span aria-hidden="true">&bull;</span>
+			Icons: <a href="https://github.com/tabler/tabler-icons/blob/master/LICENSE">Tabler Icons</a>
+		</div>
+	</body>
+</html>
