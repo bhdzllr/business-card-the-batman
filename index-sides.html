@@ -499,5 +499,38 @@
 				</section>
 			</main>
 		</div>
+
+		<script>
+			(function () {
+				const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+				const linksFront = document.querySelector('.js-front').querySelectorAll(focusableSelector);
+				const linksBack = document.querySelector('.js-back').querySelectorAll(focusableSelector);
+
+				window.addEventListener('hashchange', setFocusableLinks);
+
+				function setFocusableLinks() {
+					if (location.hash === '#card') {
+						linksFront.forEach(function (link) {
+							link.setAttribute('tabindex', -1);
+						});
+
+						linksBack.forEach(function (link) {
+							link.setAttribute('tabindex', 0);
+						});
+					} else {
+						linksFront.forEach(function (link) {
+							link.setAttribute('tabindex', 0);
+						});
+
+						console.log(linksBack);
+						linksBack.forEach(function (link) {
+							link.setAttribute('tabindex', -1);
+						});
+					}
+				}
+
+				setFocusableLinks();
+			})();
+		</script>
 	</body>
 </html>
